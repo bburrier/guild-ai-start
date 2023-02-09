@@ -1,0 +1,35 @@
+- model: sample
+  description: A sample model
+  operations:
+    train:
+      description: Sample training script
+      main: train
+      flags-import: all
+      output-scalars: '(\key): (\value)'
+
+- model: iris-svm
+  description: Iris classifier using a support vector machine (SVM)
+  operations:
+    train:
+      description: Train SVM model on Iris data set
+      main: plot_iris_exercise
+      flags:
+        kernel:
+          description: SVM kernel type
+          default: rbf
+          choices: [linear, poly, rbf]
+        test_split:
+          description: Percentage of examples held out for test
+          default: 0.2
+        random_seed:
+          description: Seed used for shuffling data
+          default: 0
+        degree:
+          description: Degree of the poly kernel function
+          default: 3
+        gamma:
+          description: Kernel coefficient for rbf and poly
+          default: 10
+      output-scalars:
+        train_accuracy: 'Train accuracy: (\value)'
+        test_accuracy: 'Test accuracy: (\value)'
